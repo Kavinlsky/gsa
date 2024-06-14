@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Dashboard</title>
+  </head>
+  <body>
+    <h2>Dashboard</h2>
+    <p>Welcome to the Dashboard, {{ session['username'] }}!</p>
+    <p><a href="/logout">Logout</a></p>
+
+    <h3>Add Task</h3>
+    <form method="POST" action="/dashboard">
+      <label for="task_name">Name of the task:</label><br>
+      {{ form.task_name(size=64) }}<br>
+      <label for="task_date">Date and Time (YYYY-MM-DD HH:MM:SS):</label><br>
+      {{ form.task_date() }}<br>
+      <label for="assigned_to">Task assigned to:</label><br>
+      {{ form.assigned_to() }}<br>
+      <input type="submit" value="Add Task">
+    </form>
+
+    <h3>Tasks</h3>
+    <table>
+      <tr>
+        <th>S.No </th>
+        <th>Task Name</th>
+        <th>Date and Time</th>
+        <th>Assigned To</th>
+        <th>Assigned By</th>
+        <th>Status</th>
+      </tr>
+      {% for task in tasks %}
+      <tr>
+        <td>{{ task[0] }}</td>
+        <td>{{ task[1] }}</td>
+        <td>{{ task[2] }}</td>
+        <td>{{ task[3] }}</td>
+        <td>{{ task[4] }}</td>
+        <td>{{ task[5] }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </body>
+</html>
